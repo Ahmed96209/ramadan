@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>مفاجأة رمضان</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #1a237e, #311b92);
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: white;
+        }
+        .container {
+            padding: 2rem;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            max-width: 600px;
+        }
+        .moon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            animation: glow 2s infinite alternate;
+        }
+        .lantern {
+            font-size: 3rem;
+            margin: 1rem;
+            animation: swing 2s infinite alternate;
+        }
+        .message {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s forwards;
+        }
+        .heart {
+            color: #ff4081;
+            animation: beat 1s infinite;
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #fff, 0 0 20px #fff; }
+            to { text-shadow: 0 0 20px #fff, 0 0 30px #fff; }
+        }
+        @keyframes swing {
+            from { transform: rotate(-5deg); }
+            to { transform: rotate(5deg); }
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes beat {
+            50% { transform: scale(1.2); }
+        }
+        button {
+            background: #ff4081;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin: 1rem;
+            transition: transform 0.3s;
+        }
+        button:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="moon">🌙</div>
+        <div class="lantern">🏮</div>
+        <div class="message" id="message1" style="animation-delay: 0.5s">
+            رمضان كريم يا أجمل قلب 
+            <span class="heart">❤️</span>
+        </div>
+        <div class="message" id="message2" style="animation-delay: 1s">
+            في هذا الشهر الفضيل، أدعو الله أن يجمع قلبينا على طاعته
+        </div>
+        <div class="message" id="message3" style="animation-delay: 1.5s">
+            كل سنة وأنتِ أقرب الناس إلى قلبي
+        </div>
+        <button onclick="showLove()">اضغطي هنا</button>
+        <div id="surprise" style="display: none;">
+            <div class="message">
+                أنتِ نور رمضاني وبهجة أيامي 
+                <span class="heart">❤️</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showLove() {
+            document.getElementById('surprise').style.display = 'block';
+            
+            // إضافة مزيد من القلوب المتحركة
+            for(let i = 0; i < 20; i++) {
+                createHeart();
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.style.position = 'fixed';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '100vh';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.style.animation = `floating ${Math.random() * 2 + 3}s linear`;
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // إضافة تأثيرات النجوم في الخلفية
+            for(let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.top = Math.random() * 100 + 'vh';
+                star.style.animationDuration = (Math.random() * 3 + 1) + 's';
+                document.body.appendChild(star);
+            }
+        });
+    </script>
+</body>
+</html>
